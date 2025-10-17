@@ -24,4 +24,20 @@ SELECT * FROM emptystack_accounts WHERE last_name = 'Steele';
 -- There will only be one EmptyStack employee with a forum account. Use their credentials to access node mainframe, which will output a new sql file for you to run
 
 -- Find the message in emptystack_messages that mentions a project involving self-driving taxis. That message is sent from an admin account and also reveals the project code
-SELECT * FROM emptystack_messages WHERE body ILIKE '%taxis%';
+SELECT * FROM emptystack_messages WHERE body ILIKE '%taxi%' OR subject ILIKE '%taxi%';
+--   id   |     from     |       to       |   subject    |                            body                            
+-------+--------------+----------------+--------------+------------------------------------------------------------
+-- LidWj | your-boss-99 | triple-cart-38 | Project TAXI | Deploy Project TAXI by end of week. We need this out ASAP.
+
+-- Get the credentials for the admin account from emptystack_accounts.
+SELECT * FROM emptystack_accounts WHERE username = 'your-boss-99';
+--   username   |    password    | first_name | last_name 
+--------------+----------------+------------+-----------
+-- your-boss-99 | notagaincarter | Skylar     | Singer
+
+-- Get the ID of the project from emptystack_projects
+SELECT * FROM emptystack_projects WHERE code ILIKE '%TAXI%' OR id ILIKE '%TAXI%';
+--     id    | code 
+----------+---------
+-- DczE0v2b | TAXI
+
